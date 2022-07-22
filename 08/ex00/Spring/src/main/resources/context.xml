@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="idPUpper" class = "school21.spring.repositories.PreProcessorToUpperImpl" />
+
+    <bean id="idPLower" class = "school21.spring.repositories.PreProcessorToLower" />
+
+    <bean id="idRErrUp" class = "school21.spring.repositories.RendererErrImpl">
+        <constructor-arg name="letterCase" ref="idPUpper"/>
+    </bean>
+
+    <bean id="idRErrLow" class = "school21.spring.repositories.RendererErrImpl">
+        <constructor-arg name="letterCase" ref="idPLower"/>
+    </bean>
+
+    <bean id="idRStandardUp" class = "school21.spring.repositories.RendererStandardImpl">
+        <constructor-arg name="letterCase" ref="idPUpper"/>
+    </bean>
+
+    <bean id="idRStandardLow" class = "school21.spring.repositories.RendererStandardImpl">
+        <constructor-arg name="letterCase" ref="idPLower"/>
+    </bean>
+
+    <bean id="printPrefixErrUp" class = "school21.spring.repositories.PrinterWithPrefixImpl">
+        <property name="prefix" value="World"/>
+        <constructor-arg name="fd" ref="idRErrUp"/>
+    </bean>
+
+    <bean id="printPrefixErrLow" class = "school21.spring.repositories.PrinterWithPrefixImpl">
+        <property name="prefix" value="World"/>
+        <constructor-arg name="fd" ref="idRErrLow"/>
+    </bean>
+
+    <bean id="printPrefixStandardUp" class = "school21.spring.repositories.PrinterWithPrefixImpl">
+        <property name="prefix" value="World"/>
+        <constructor-arg name="fd" ref="idRStandardUp"/>
+    </bean>
+
+    <bean id="printPrefixStandardLow" class = "school21.spring.repositories.PrinterWithPrefixImpl">
+        <property name="prefix" value="World"/>
+        <constructor-arg name="fd" ref="idRStandardLow"/>
+    </bean>
+
+    <bean id="printDataStandardUp" class = "school21.spring.repositories.PrinterWithDateTimeImpl">
+        <constructor-arg name="fd" ref="idRStandardUp"/>
+    </bean>
+
+    <bean id="printDataStandardLow" class = "school21.spring.repositories.PrinterWithDateTimeImpl">
+        <constructor-arg name="fd" ref="idRStandardLow"/>
+    </bean>
+
+    <bean id="printDataErrUp" class = "school21.spring.repositories.PrinterWithDateTimeImpl">
+        <constructor-arg name="fd" ref="idRErrUp"/>
+    </bean>
+
+    <bean id="printDataErrLow" class = "school21.spring.repositories.PrinterWithDateTimeImpl">
+        <constructor-arg name="fd" ref="idRErrLow"/>
+    </bean>
+
+</beans>
